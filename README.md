@@ -69,9 +69,6 @@ HAM  (  0.0% spam)  See you at 6?
 - Recall on spam is 90.6%. Adding character-level features (digits, currency symbols, capital letters) or trying Logistic Regression or a linear SVM could catch more of the missed spam.
 - The dataset is small and fairly old, so the model may do worse on modern spam.
 
-## About this project
-
-I wrote the original version of this classifier myself. I then refactored it with help from Claude, an AI assistant made by Anthropic, to fix data leakage, add cross-validated tuning and proper evaluation, and tidy the structure.
 
 ## Dataset
 
