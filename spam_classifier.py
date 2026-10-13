@@ -28,7 +28,7 @@ DATA_PATH = Path("data/sms.tsv")
 MODEL_PATH = Path("spam_model.joblib")
 RANDOM_STATE = 42
 
-# Settings the grid search will try. Add more values to explore further.
+# Settings the grid search will try.
 PARAM_GRID = {
     "tfidf__stop_words": [None, "english"],
     "tfidf__ngram_range": [(1, 1), (1, 2)],
@@ -60,13 +60,13 @@ def train():
     df = load_data()
     print(f"Loaded {len(df)} messages:\n{df['label'].value_counts().to_string()}\n")
 
-    # stratify keeps the spam/ham ratio the same in train and test
+    # stratify keeps the spam/ham ratio the same
     X_train, X_test, y_train, y_test = train_test_split(
         df["text"], df["label"],
         test_size=0.2, stratify=df["label"], random_state=RANDOM_STATE,
     )
 
-    # Spam is the minority class, so tune for spam F1, not plain accuracy
+    
     search = GridSearchCV(
         build_pipeline(),
         PARAM_GRID,
@@ -79,7 +79,7 @@ def train():
     print("Best settings:", search.best_params_)
     print(f"Cross-validated spam F1: {search.best_score_:.4f}\n")
 
-    # The test set was never touched during tuning, so this is an honest score
+    
     model = search.best_estimator_
     predictions = model.predict(X_test)
     print(classification_report(y_test, predictions, digits=4))
@@ -117,7 +117,7 @@ def main():
 
     if args.command == "predict":
         predict(args.messages)
-    else:  # "train", or no command at all (e.g. the VS Code Run button)
+    else: 
         train()
 
 
