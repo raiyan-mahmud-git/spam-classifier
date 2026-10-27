@@ -38,19 +38,21 @@ Best settings found: word pairs included (`ngram_range=(1, 2)`), no stop-word re
 
 ## Setup
 
+Requires Python 3.10 or newer.
+
 ```
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ## Usage
 
-Train, evaluate and save the model:
+Train and evaluate the model, then save it locally as `spam_model.joblib` (this generated model file is not tracked by Git):
 
 ```
 python spam_classifier.py train
 ```
 
-Classify your own messages:
+Training downloads and caches the dataset in `data/sms.tsv`. After training, classify your own messages:
 
 ```
 python spam_classifier.py predict "Claim your free lottery prize now!" "See you at 6?"
